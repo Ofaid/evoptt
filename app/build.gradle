@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        google()          // ← TAMBAH INI DI ATAS!!!
         mavenCentral()
     }
     dependencies {
@@ -7,10 +8,9 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
-
 repositories {
+    google()              // ← TAMBAH INI JUGA!!!
     mavenCentral()
-}
 
 dependencies {
     compile project(':libraries:Jumble')
