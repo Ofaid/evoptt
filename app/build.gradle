@@ -39,6 +39,9 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
+    // ✅ DI LUAR defaultConfig — POSISI YANG BENAR!
+    flavorDimensions "default"
+
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
@@ -52,10 +55,12 @@ android {
     productFlavors {
         official {
             applicationId "com.terracom.qrptt"
+            dimension "default"
         }
         free {
             applicationId "com.theofilos.chamalis.qrptt.free"
             buildConfigField "boolean", "DONATE_NAG", "false"
+            dimension "default"
         }
         jenkins {
             def env = System.getenv()
@@ -67,6 +72,7 @@ android {
                 versionName "Unknown Nightly"
             }
             applicationId "com.theofilos.chamalis.qrptt.jenkins"
+            dimension "default"
         }
     }
 
@@ -74,3 +80,4 @@ android {
         abortOnError false
     }
 }
+
