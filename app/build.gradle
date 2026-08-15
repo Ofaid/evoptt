@@ -1,16 +1,19 @@
 buildscript {
     repositories {
-        google()          // ← TAMBAH INI DI ATAS!!!
+        maven { url 'https://maven.google.com' }
         mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
     }
 }
+
 apply plugin: 'com.android.application'
+
 repositories {
-    google()              // ← TAMBAH INI JUGA!!!
+    maven { url 'https://maven.google.com' }
     mavenCentral()
+}
 
 dependencies {
     compile project(':libraries:Jumble')
