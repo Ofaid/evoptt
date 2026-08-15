@@ -18,99 +18,23 @@ repositories {
 dependencies {
     compile project(':libraries:Jumble')
     compile project(':libraries:NetCipher:libnetcipher')
-    compile 'com.android.support:support-v4:25.1.1'
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support:cardview-v7:25.1.1'
-    compile 'com.android.support:palette-v7:25.1.1'
-    compile 'com.android.support:recyclerview-v7:25.1.1'
-    buildscript {
-    repositories {
-        maven { url 'https://maven.google.com' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
-    }
-}
-
-apply plugin: 'com.android.application'
-
-repositories {
-    maven { url 'https://maven.google.com' }
-    mavenCentral()
-}
-
-dependencies {
-    compile project(':libraries:Jumble')
-    compile project(':libraries:NetCipher:libnetcipher')
-    compile 'com.android.support:support-v4:25.1.1'
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support:cardview-v7:25.1.1'
-    compile 'com.android.support:palette-v7:25.1.1'
-    compile 'com.android.support:recyclerview-v7:25.1.1'
-    // Ganti jalur lokal dengan versi dari repositori
-    compile 'com.android.support:support-v4:25.1.1'
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support:cardview-v7:25.1.1'
-    compile 'com.android.support:recyclerview-v7:25.1.1'
-    compile 'com.android.support:palette-v7:25.1.1'
     
-    // android-async-http (ganti jalur lokal → versi resmi)
+    compile 'com.android.support:support-v4:25.1.1'
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:cardview-v7:25.1.1'
+    compile 'com.android.support:palette-v7:25.1.1'
+    compile 'com.android.support:recyclerview-v7:25.1.1'
+    
+    // android-async-http & Gson (ganti jalur lokal → versi resmi)
     compile 'com.loopj.android:android-async-http:1.4.6'
-    
-    // Gson (ganti jalur lokal → versi resmi)
     compile 'com.google.code.gson:gson:2.3.1'
 }
-def signingFile = file 'signing.gradle';
-if (signingFile.exists()) apply from: 'signing.gradle'
 
-android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-
-    defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 25
-        applicationId "com.theofilos.chamalis.qrptt"
-
-        versionCode 88
-        versionName "1.5"
-        testInstrumentationRunner "android.test.InstrumentationTestRunner"
-        buildConfigField "boolean", "DONATE_NAG", "false"
-    }
-
-    productFlavors {
-
-        official {
-            applicationId "com.terracom.qrptt"
-        }
-
-        free {
-            applicationId "com.theofilos.chamalis.qrptt.free"
-            buildConfigField "boolean", "DONATE_NAG", "false"
-        }
-
-        jenkins {
-            def env = System.getenv()
-            if (env.containsKey("BUILD_NUMBER") && env.containsKey("BUILD_DISPLAY_NAME")) {
-                versionCode Integer.parseInt(env.get("BUILD_NUMBER"))
-                versionName env.get("BUILD_DISPLAY_NAME")
-            } else {
-                versionCode 0
-                versionName "Unknown Nightly"
-            }
-            applicationId "com.theofilos.chamalis.qrptt.jenkins"
-        }
-    }
-
-    lintOptions {
-        abortOnError false
-    }
+def signingFile = file 'signing.gradle'
+if (signingFile.exists()) {
+    apply from: 'signing.gradle'
 }
 
-def signingFile = file 'signing.gradle';
-if (signingFile.exists()) apply from: 'signing.gradle'
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -119,7 +43,6 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         applicationId "com.theofilos.chamalis.qrptt"
-
         versionCode 88
         versionName "1.5"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
@@ -127,16 +50,13 @@ android {
     }
 
     productFlavors {
-
         official {
             applicationId "com.terracom.qrptt"
         }
-
         free {
             applicationId "com.theofilos.chamalis.qrptt.free"
             buildConfigField "boolean", "DONATE_NAG", "false"
         }
-
         jenkins {
             def env = System.getenv()
             if (env.containsKey("BUILD_NUMBER") && env.containsKey("BUILD_DISPLAY_NAME")) {
