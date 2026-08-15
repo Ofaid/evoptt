@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Ambil kode
         uses: actions/checkout@v4
+        with:
+          submodules: recursive  # ← Ini ambil isi folder Jumble & NetCipher yang kosong tadi!
 
       - name: Siapkan Java
         uses: actions/setup-java@v4
